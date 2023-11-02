@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('director');
             $table->integer('duration');
+            $table->string('image');
             $table->timestamps();
         });
     }

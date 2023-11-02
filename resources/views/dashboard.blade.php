@@ -79,7 +79,7 @@
         <!-- Main Footer -->
         <footer class="main-footer">
             <!-- To the right -->
-            <div class="float-right d-none d-sm-inline"> GD8_X_YYYYY
+            <div class="float-right d-none d-sm-inline"> GD8_B_11446
             </div>
             <!-- Default to the left -->
             <strong>Copyright &copy; {{ date('Y') }} <a href="#">AdminLTE.io</a>. </strong> All rights reserved.

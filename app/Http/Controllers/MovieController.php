@@ -39,14 +39,25 @@ class MovieController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'director' => 'required',
-            'duration' => 'required'
+            'duration' => 'required',
+            'image' => 'required'
         ]);
+
+        if($request->hasFile('image')) {
+            $uploadedImage = $request->file('image');
+            $namaFile = time() . '_' . $uploadedImage->getClientOriginalName();
+            $uploadPath = '../public/public/images/';
+            $uploadedImage->move($uploadPath, $namaFile);
+
+            $uploadedPath = '/public/images/' . $namaFile;
+        }
 
         //Fungsi Simpan Data ke dalam Database
         Movie::create([
             'title' => $request->title,
             'director' => $request->director,
-            'duration' => $request->duration
+            'duration' => $request->duration,
+            'image'=> $uploadedPath
         ]);
 
         try {
@@ -81,13 +92,24 @@ class MovieController extends Controller
         $this->validate($request, [
             'title'=> 'required',
             'director'=> 'required',
-            'duration'=> 'required'
+            'duration'=> 'required',
         ]);
+
+        $uploadedPath = $movie->image == '' ? '' : $movie->image;
+
+        if($request->hasFile('image')) {
+            $uploadedImage = $request->file('image');
+            $namaFile = time() . '_'. $uploadedImage->getClientOriginalName();
+            $uploadPath = '../public/public/images/';
+            $uploadedImage->move($uploadPath, $namaFile);
+            $uploadedPath = '/public/images/'. $namaFile;
+        }
 
         $movie->update([
             'title'=> $request->title,
             'director'=> $request->director,
-            'duration'=> $request->duration
+            'duration'=> $request->duration,
+            'image'=> $uploadedPath
         ]);
 
         return redirect()->route('movie.index')->with(['success' => 'Data Berhasil Diubah!']);

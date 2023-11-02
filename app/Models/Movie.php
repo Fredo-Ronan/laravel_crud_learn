@@ -13,5 +13,6 @@ class Movie extends Model
         'title',
         'director',
         'duration',
+        'image'
     ];
 }

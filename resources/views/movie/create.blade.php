@@ -31,8 +31,19 @@
                     <div class="card-body">
                         <form action="{{ route('movie.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            <!-- Code UGD -->
                             <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label class="font-weight-bold">Image</label>
+                                    <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" value="{{ old('image') }}">
+                                    @error('image')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
                             </div>
+                            <!-- end of Code UGD -->
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label class="font-weight-bold">Title</label>
